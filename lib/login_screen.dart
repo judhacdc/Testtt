@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/homepage.dart';
 import 'package:flutter_application_1/signup_screen.dart';
 
 
@@ -36,11 +37,11 @@ class StartState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: 50),
+                        margin: EdgeInsets.only(top: 70),
                         child: Image.asset(
                           "images/app_logo.png",
-                          height: 90,
-                          width: 90,
+                          height: 120,
+                          width: 120,
                         ),
                       ),
                       Container(
@@ -133,6 +134,12 @@ class StartState extends State<LoginScreen> {
             GestureDetector(
               onTap: () {
                 // Write Click Listener Code Here.
+                Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MyApp(),
+                        )
+                      );
               },
               child: Container(
                 alignment: Alignment.center,
@@ -160,6 +167,7 @@ class StartState extends State<LoginScreen> {
                       color: Colors.white
                   ),
                 ),
+                
               ),
             ),
             Container(

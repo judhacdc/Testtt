@@ -34,8 +34,8 @@ class InitState extends State<SignUpScreen> {
                 margin: EdgeInsets.only(top: 50),
                 child: Image.asset(
                   "images/app_logo.png",
-                  height: 90,
-                  width: 90,
+                  height: 120,
+                  width: 120,
                 ),
               ),
               Container(

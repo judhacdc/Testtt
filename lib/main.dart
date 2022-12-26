@@ -9,6 +9,7 @@ void main() {
     debugShowCheckedModeBanner: false,
     routes: {
       '/': (context) => SplashScreen(),
+      // '/': (context) => MyApp(),
       '/login': (context) => LoginScreen(),
       '/register': (context) => SignUpScreen(),
       '/homepage': (context) => MyApp(),
