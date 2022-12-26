@@ -1,13 +1,8 @@
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'package:uas_flutter/models/biodata.dart';
-// import 'package:uas_flutter/sql_helper.dart';
-
 // Tab Bar
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/pages/detail_screen.dart';
 
 import '../models/biodata.dart';
 import '../sql_helper.dart';
@@ -276,6 +271,23 @@ class _FormData extends State<HomePage> {
                                   Text('Alamat : ${_biodata[index].address!}'),
                                   Text(
                                       'Jenis Kelamin : ${_biodata[index].gender! == 'male' ? 'Laki - Laki' : 'Perempuan'}'),
+                                  ElevatedButton(
+                                      onPressed: (() {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DetailScreen(
+                                                      nim: _biodata[index].nim!,
+                                                      nama:
+                                                          _biodata[index].nama!,
+                                                      alamat: _biodata[index]
+                                                          .address!,
+                                                      gender: _biodata[index]
+                                                          .gender!,
+                                                    )));
+                                      }),
+                                      child: Text("Detail"))
                                 ],
                               ),
                             ),
