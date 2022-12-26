@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/homepage.dart';
-import 'package:flutter_application_1/signup_screen.dart';
+import 'package:flutter_application_1/pages/homepage.dart';
+import 'package:flutter_application_1/pages/signup_screen.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -137,7 +137,7 @@ class StartState extends State<LoginScreen> {
                 Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MyApp(),
+                          builder: (context) => HomePage(),
                         )
                       );
               },
