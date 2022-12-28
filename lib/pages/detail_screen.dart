@@ -8,12 +8,14 @@ class DetailScreen extends StatelessWidget {
   int nim;
   String alamat;
   String nama;
+  String nohp;
   String gender;
 
   DetailScreen(
       {required this.nim,
       required this.alamat,
       required this.nama,
+      required this.nohp,
       required this.gender});
 
   @override
@@ -88,6 +90,24 @@ class DetailScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 36),
                     child: Text(nama, style: TextStyle(fontSize: 16)),
+                  ),
+                ],
+              ),
+               SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  const Text(
+                    'No HP',
+                    style: TextStyle(
+                        color: Colors.orange,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 36),
+                    child: Text(nohp, style: TextStyle(fontSize: 16)),
                   ),
                 ],
               ),

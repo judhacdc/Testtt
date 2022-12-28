@@ -31,6 +31,7 @@ class _FormData extends State<HomePage> {
   String? gender;
   final nim = TextEditingController();
   final nama = TextEditingController();
+  final nohp = TextEditingController();
   final alamat = TextEditingController();
 
   List<Biodata> _biodata = [];
@@ -39,6 +40,7 @@ class _FormData extends State<HomePage> {
   void clearText() {
     nim.clear();
     nama.clear();
+    nohp.clear();
     alamat.clear();
     setState(() {
       gender = null;
@@ -51,6 +53,7 @@ class _FormData extends State<HomePage> {
     Biodata biodata = Biodata(
       nim: int.parse(nim.text),
       nama: nama.text,
+      nohp: nohp.text,
       address: alamat.text,
       gender: gender,
     );
@@ -89,6 +92,7 @@ class _FormData extends State<HomePage> {
         // deprecated,
       ),
       home: DefaultTabController(
+        initialIndex: 0, // biar yang pertama kali muncul tab 1
         length: 2,
         child: Scaffold(
           resizeToAvoidBottomInset: false,
@@ -139,16 +143,20 @@ class _FormData extends State<HomePage> {
                   Container(
                     padding: EdgeInsets.all(10),
                     child: TextField(
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(), labelText: 'No Hp'),
+                      controller: nohp,
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: TextField(
                       maxLines: 3,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(), labelText: 'Alamat'),
                       controller: alamat,
                     ),
                   ),
-                  
-
-
-
 
                   Container(
                     padding: EdgeInsets.only(left: 12, top: 10),
@@ -163,44 +171,44 @@ class _FormData extends State<HomePage> {
                   ),
 
                   // create dropdown to select gender
-                   Container(
-                  margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-                  padding: EdgeInsets.only(left: 20, right: 20, top: 4, bottom: 4),
-                  height: 54,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.grey[200],
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
+                  Container(
+                    margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+                    padding:
+                        EdgeInsets.only(left: 20, right: 20, top: 4, bottom: 4),
+                    height: 54,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.grey[200],
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: DropdownButton(
+                      isExpanded: true,
+                      underline: SizedBox(),
+                      hint: Text('Jenis Kelamin'),
+                      items: [
+                        DropdownMenuItem(
+                          child: Text('Laki - Laki'),
+                          value: "Laki - Laki",
+                        ),
+                        DropdownMenuItem(
+                          child: Text('Perempuan'),
+                          value: "Perempuan",
+                        ),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          gender = value.toString();
+                        });
+                      },
+                    ),
                   ),
-                  child: DropdownButton(
-                    isExpanded: true,
-                    underline: SizedBox(),
-                    hint: Text('Jenis Kelamin'),
-                    items: [
-                      DropdownMenuItem(
-                        child: Text('Laki - Laki'),
-                        value: "Laki - Laki",
-
-                      ),
-                      DropdownMenuItem(
-                        child: Text('Perempuan'),
-                        value: "Perempuan",
-                      ),
-                    ],
-                    onChanged: (value) {
-                      setState(() {
-                        gender = value.toString();
-                      });
-                    },
-                  ),
-                ),
 
                   Row(
                     children: [
@@ -282,6 +290,8 @@ class _FormData extends State<HomePage> {
                                                       nim: _biodata[index].nim!,
                                                       nama:
                                                           _biodata[index].nama!,
+                                                      nohp:
+                                                          _biodata[index].nohp!,
                                                       alamat: _biodata[index]
                                                           .address!,
                                                       gender: _biodata[index]
