@@ -227,10 +227,35 @@ class _FormData extends State<HomePage> {
                             primary: Colors.white,
                             backgroundColor: Colors.blue,
                           ),
-                          onPressed: () {
-                            _createItem();
-                            clearText();
-                          },
+                          // memunculkan alert dialog
+                            onPressed: () => [
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: const Text("Alert"),
+                              content: const Text("Data Berhasil Disimpan"),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(ctx).pop();
+                                  },
+                                  child: Container(
+                                    color: Colors.blue,
+                                    padding: const EdgeInsets.all(14),
+                                    child: const Text(
+                                      "okay",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          _createItem(),
+                          clearText()
+                        ],
                           child: Text('Submit'),
                         ),
                       ),
@@ -268,9 +293,58 @@ class _FormData extends State<HomePage> {
                             ),
                             trailing: IconButton(
                               icon: Icon(Icons.delete),
+                              // onPressed: () {
+                              //   _deleteItem(_biodata[index].id!);
+                              // },
+                              
+                              // biar muncul alert yes or no
                               onPressed: () {
-                                _deleteItem(_biodata[index].id!);
-                              },
+                                      showDialog(
+                                        context: context,
+                                        builder: (ctx) => AlertDialog(
+                                          title: const Text("Alert"),
+                                          content:
+                                              const Text("Yakin Hapus Data?"),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: () {
+                                                _deleteItem(
+                                                   
+                                                    _biodata[index].id!);
+                                                Navigator.of(ctx).pop();
+                                              },
+                                              child: Container(
+                                                color: Colors.red,
+                                                padding:
+                                                    const EdgeInsets.all(14),
+                                                child: const Text(
+                                                  "Yes",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(ctx).pop();
+                                              },
+                                              child: Container(
+                                                color: Colors.blue,
+                                                padding:
+                                                    const EdgeInsets.all(14),
+                                                child: const Text(
+                                                  "No",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    }
                             ),
                             title: Text(_biodata[index].nama!),
                             subtitle: Padding(
