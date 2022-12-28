@@ -8,7 +8,7 @@ class SQLHelper {
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         nim INTEGER,
         nama text,
-      no_hp INTEGER,
+        no_hp INTEGER,
         address TEXT,
         gender TEXT, 
         createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

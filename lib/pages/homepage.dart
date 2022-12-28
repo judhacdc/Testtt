@@ -60,7 +60,7 @@ class _FormData extends State<HomePage> {
     };
 
     final result =
-        await db.update('biodata', biodata, where: 'id = ?', whereArgs: [id]);
+        await db.update('mhsBio', biodata, where: 'id = ?', whereArgs: [id]);
     return result;
   }
 
@@ -121,7 +121,9 @@ class _FormData extends State<HomePage> {
                   padding: EdgeInsets.all(10),
                   child: TextField(
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: 'NIM'),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.orange)),
+                        labelText: 'NIM'),
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     controller: nim,
@@ -131,7 +133,9 @@ class _FormData extends State<HomePage> {
                   padding: EdgeInsets.all(10),
                   child: TextField(
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: 'Nama'),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.orange)),
+                        labelText: 'Nama'),
                     controller: nama,
                   ),
                 ),
@@ -139,7 +143,9 @@ class _FormData extends State<HomePage> {
                   padding: EdgeInsets.all(10),
                   child: TextField(
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: 'No HP'),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.orange)),
+                        labelText: 'No HP'),
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     controller: no_hp,
@@ -150,7 +156,9 @@ class _FormData extends State<HomePage> {
                   child: TextField(
                     maxLines: 3,
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: 'Alamat'),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.orange)),
+                        labelText: 'Alamat'),
                     controller: address,
                   ),
                 ),
@@ -188,11 +196,11 @@ class _FormData extends State<HomePage> {
                     hint: Text('Jenis Kelamin'),
                     items: [
                       DropdownMenuItem(
-                        child: Text('Laki - Laki'),
-                        value: "Laki - Laki",
+                        child: Text('Pria'),
+                        value: "male",
                       ),
                       DropdownMenuItem(
-                        child: Text('Perempuan'),
+                        child: Text('Wanita'),
                         value: "Perempuan",
                       ),
                     ],
@@ -288,31 +296,22 @@ class _FormData extends State<HomePage> {
                             width: 150,
                             child: Row(
                               children: [
-
-
-                                  IconButton(
+                                IconButton(
                                   icon: Icon(Icons.details),
-                                  
-                                      onPressed: (() {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DetailScreen(
-                                                      id: _biodata[index]
-                                                          ['id'],
-                                                          gender: _biodata[index]
-                                                          ['gender'],
-                                                      nim: _biodata[index]
-                                                          ['nim'],
-                                                      nama: _biodata[index]
-                                                          ['nama'],
-                                                      no_hp: _biodata[index]
-                                                          ['no_hp'],
-                                                      address: _biodata[index]
-                                                          ['address'].toString(),),));
-                                      }),
-                                   
+                                  onPressed: (() {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => DetailScreen(
+                                              id: _biodata[index]['id'],
+                                              gender: _biodata[index]['gender'],
+                                              nim: _biodata[index]['nim'],
+                                              nama: _biodata[index]['nama'],
+                                              no_hp: _biodata[index]['no_hp'],
+                                              address: _biodata[index]
+                                                  ['address']),
+                                        ));
+                                  }),
                                 ),
                                 IconButton(
                                   icon: Icon(Icons.edit),
@@ -382,11 +381,8 @@ class _FormData extends State<HomePage> {
                                 Text("No HP  : ${_biodata[index]['no_hp']}"),
                                 Text("Alamat : ${_biodata[index]['address']}"),
                                 Text(
-                                    "Gender : ${_biodata[index]['Gender'] == 1 ? 'Laki-laki' : 'Perempuan'}"),
-
-                                    
+                                    'Gender : ${_biodata[index]['gender'] == 'male' ? 'Pria' : 'Wanita'}'),
                               ],
-                              
                             ),
                           ),
                         ),
@@ -450,7 +446,10 @@ class _FormData extends State<HomePage> {
               padding: EdgeInsets.all(10),
               child: TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'NIM'),
+                    // biar highlightnya berwarna
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.orange)),
+                    labelText: 'NIM'),
                 keyboardType: TextInputType.number,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 controller: nim,
@@ -460,7 +459,9 @@ class _FormData extends State<HomePage> {
               padding: EdgeInsets.all(10),
               child: TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Nama'),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.orange)),
+                    labelText: 'Nama'),
                 controller: nama,
               ),
             ),
@@ -468,7 +469,9 @@ class _FormData extends State<HomePage> {
               padding: EdgeInsets.all(10),
               child: TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'No HP'),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.orange)),
+                    labelText: 'No HP'),
                 keyboardType: TextInputType.number,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 controller: no_hp,
@@ -479,7 +482,9 @@ class _FormData extends State<HomePage> {
               child: TextField(
                 maxLines: 3,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Alamat'),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.orange)),
+                    labelText: 'Alamat'),
                 controller: address,
               ),
             ),
@@ -528,7 +533,7 @@ class _FormData extends State<HomePage> {
                         fontSize: 17,
                       ),
                     ),
-                    value: 'female',
+                    value: 'Perempuan',
                     groupValue: gender,
                     toggleable: true,
                     dense: true,
@@ -558,7 +563,7 @@ class _FormData extends State<HomePage> {
                       if (id != null) {
                         _updateItem(id);
                       }
-                      clearText();
+
                       Navigator.pop(context);
                       showDialog(
                         context: context,
