@@ -1,4 +1,4 @@
-import 'dart:html';
+// import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -109,18 +109,21 @@ class DetailScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 40,
-                width: MediaQuery.of(context).size.width / 2 - 13,
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    primary: Colors.white,
-                    backgroundColor: Colors.blue,
+              Container(
+                padding: EdgeInsets.only(top: 30),
+                child: SizedBox(
+                  height: 40,
+                  width: MediaQuery.of(context).size.width / 2 - 13,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      primary: Colors.white,
+                      backgroundColor: Colors.blue,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('KEMBALI'),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text('KEMBALI'),
                 ),
               ),
             ],

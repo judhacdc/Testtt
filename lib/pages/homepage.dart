@@ -165,7 +165,7 @@ class _FormData extends State<HomePage> {
                   // create dropdown to select gender
                    Container(
                   margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-                  padding: EdgeInsets.only(left: 20, right: 20),
+                  padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                   height: 54,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
@@ -202,61 +202,10 @@ class _FormData extends State<HomePage> {
                   ),
                 ),
 
-
-
-
-                  // Row(
-                  //   children: [
-                  //     Expanded(
-                  //       child: RadioListTile(
-                  //         contentPadding: EdgeInsets.only(left: 10, bottom: 30),
-                  //         title: Text(
-                  //           'Laki - Laki',
-                  //           style: TextStyle(
-                  //             fontSize: 17,
-                  //           ),
-                  //         ),
-                  //         value: 'male',
-                  //         groupValue: gender,
-                  //         toggleable: true,
-                  //         dense: true,
-                  //         onChanged: (value) {
-                  //           setState(() {
-                  //             gender = value.toString();
-                  //           });
-                  //         },
-                  //       ),
-                  //     ),
-                  //     SizedBox(
-                  //       width: 5.0,
-                  //     ),
-                  //     Expanded(
-                  //       child: RadioListTile(
-                  //         contentPadding: EdgeInsets.only(bottom: 30),
-                  //         title: Text(
-                  //           'Perempuan',
-                  //           style: TextStyle(
-                  //             fontSize: 17,
-                  //           ),
-                  //         ),
-                  //         value: 'female',
-                  //         groupValue: gender,
-                  //         toggleable: true,
-                  //         dense: true,
-                  //         onChanged: (value) {
-                  //           setState(() {
-                  //             gender = value.toString();
-                  //           });
-                  //         },
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-
                   Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 10),
+                        padding: EdgeInsets.only(left: 10, top: 10),
                       ),
                       SizedBox(
                         height: 40,
