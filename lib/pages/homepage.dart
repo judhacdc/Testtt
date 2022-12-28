@@ -165,7 +165,7 @@ class _FormData extends State<HomePage> {
                   // create dropdown to select gender
                    Container(
                   margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-                  padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                  padding: EdgeInsets.only(left: 20, right: 20, top: 4, bottom: 4),
                   height: 54,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
@@ -205,7 +205,7 @@ class _FormData extends State<HomePage> {
                   Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 10, top: 10),
+                        padding: EdgeInsets.only(left: 10),
                       ),
                       SizedBox(
                         height: 40,
@@ -217,6 +217,7 @@ class _FormData extends State<HomePage> {
                           ),
                           onPressed: () {
                             _createItem();
+                            clearText();
                           },
                           child: Text('Submit'),
                         ),
@@ -240,6 +241,7 @@ class _FormData extends State<HomePage> {
                   ),
                 ],
               ),
+              // list
               Expanded(
                 child: FutureBuilder(
                   future: _getBiodata(),
@@ -269,7 +271,7 @@ class _FormData extends State<HomePage> {
                                   Text('NIM : ${_biodata[index].nim}'),
                                   Text('Alamat : ${_biodata[index].address!}'),
                                   Text(
-                                      'Jenis Kelamin : ${_biodata[index].gender! == 'male' ? 'Laki - Laki' : 'Perempuan'}'),
+                                      'Jenis Kelamin : ${_biodata[index].gender == 'male' ? 'Laki - Laki' : 'Perempuan'}'),
                                   ElevatedButton(
                                       onPressed: (() {
                                         Navigator.push(

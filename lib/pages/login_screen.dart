@@ -28,14 +28,6 @@ class StartState extends State<LoginScreen> {
     } else {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => LoginScreen()));
-          // return showDialog(
-          //   context: context,
-          //   builder: (context) {
-          //     return AlertDialog(
-          //       content: Text("Email atau Password Salah"),
-          //     );
-          //   }
-          // );
     }
   }
 
