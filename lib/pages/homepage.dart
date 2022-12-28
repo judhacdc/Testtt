@@ -81,11 +81,11 @@ class _FormData extends State<HomePage> {
         brightness: Brightness.light,
         // add tabBarTheme
         tabBarTheme: const TabBarTheme(
-            labelColor: Color(0xFF08a5fa),
+            labelColor: Color(0xffF5591F),
             labelStyle: TextStyle(color: Colors.black),
             unselectedLabelColor: Colors.black,
             indicator: UnderlineTabIndicator(
-                borderSide: BorderSide(color: Color(0xFF08a5fa)))),
+                borderSide: BorderSide(color: Color(0xffF5591F)))),
         // deprecated,
       ),
       home: DefaultTabController(
@@ -102,7 +102,7 @@ class _FormData extends State<HomePage> {
               ),
             ),
             title: const Text('Mahasiswa'),
-            backgroundColor: Color(0xFF08a5fa),
+            backgroundColor: Color(0xffF5591F),
           ),
           body: TabBarView(
             children: <Widget>[
