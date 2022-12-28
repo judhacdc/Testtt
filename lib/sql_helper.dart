@@ -7,6 +7,7 @@ import 'models/biodata.dart';
 // id = integer, primary key, auto increment
 // nim = integer
 // name = text
+// no_hp = integer
 // address = text
 // gender = radio button ( text )
 
@@ -14,10 +15,11 @@ import 'models/biodata.dart';
 // this will create the table
 class SQLHelper {
   static Future<void> createTables(sql.Database database) async {
-    await database.execute("""CREATE TABLE biodata(
+    await database.execute("""CREATE TABLE bioMhs(
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         nim INTEGER,
         nama text,
+        no_hp INTEGER,
         address TEXT,
         gender TEXT, 
         createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -28,8 +30,8 @@ class SQLHelper {
   // create database
   static Future<sql.Database> db() async {
     return sql.openDatabase(
-      'biodata.db',
-      version: 1,
+      'bioMhs.db',
+      version: 2,
       onCreate: (sql.Database database, int version) async {
         await createTables(database);
       },
@@ -43,11 +45,12 @@ class SQLHelper {
     Map<String, dynamic> data = {
       'nim': biodata.nim,
       'nama': biodata.nama,
+      'no_hp': biodata.no_hp,
       'address': biodata.address,
       'gender': biodata.gender
     };
 
-    final id = await db.insert('biodata', data,
+    final id = await db.insert('bioMhs', data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
     return id;
   }
@@ -56,12 +59,13 @@ class SQLHelper {
   static Future<List<Biodata>> getItems() async {
     final db = await SQLHelper.db();
     final List<Map<String, dynamic>> maps =
-        await db.query('biodata', orderBy: "id");
+        await db.query('bioMhs', orderBy: "id");
     return List.generate(maps.length, (i) {
       return Biodata(
           id: maps[i]['id'],
           nim: maps[i]['nim'],
           nama: maps[i]['nama'],
+          no_hp: maps[i]['no_hp'],
           address: maps[i]['address'],
           gender: maps[i]['gender']);
     });
@@ -71,11 +75,12 @@ class SQLHelper {
   static Future<Biodata> getItem(int id) async {
     final db = await SQLHelper.db();
     final List<Map<String, dynamic>> maps =
-        await db.query('biodata', where: "id = ?", whereArgs: [id], limit: 1);
+        await db.query('bioMhs', where: "id = ?", whereArgs: [id], limit: 1);
     return Biodata(
       id: maps[0]['id'],
       nim: maps[0]['nim'],
       nama: maps[0]['nama'],
+      no_hp: maps[0]['no_hp'],
       address: maps[0]['address'],
       gender: maps[0]['gender'],
     );
@@ -88,12 +93,13 @@ class SQLHelper {
     Map<String, dynamic> data = {
       'nim': biodata.nim,
       'nama': biodata.nama,
+      'no_hp': biodata.no_hp,
       'address': biodata.address,
       'gender': biodata.gender
     };
 
     final result =
-        await db.update('biodata', data, where: "id = ?", whereArgs: [id]);
+        await db.update('bioMhs', data, where: "id = ?", whereArgs: [id]);
     return result;
   }
 
@@ -101,7 +107,7 @@ class SQLHelper {
   static Future<void> deleteItem(int id) async {
     final db = await SQLHelper.db();
     try {
-      await db.delete("biodata", where: "id = ?", whereArgs: [id]);
+      await db.delete("bioMhs", where: "id = ?", whereArgs: [id]);
     } catch (err) {
       debugPrint("Cannot delete bio: $err");
     }

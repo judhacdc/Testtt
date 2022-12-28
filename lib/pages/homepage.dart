@@ -31,6 +31,7 @@ class _FormData extends State<HomePage> {
   String? gender;
   final nim = TextEditingController();
   final nama = TextEditingController();
+  final no_hp = TextEditingController();
   final alamat = TextEditingController();
 
   List<Biodata> _biodata = [];
@@ -39,6 +40,7 @@ class _FormData extends State<HomePage> {
   void clearText() {
     nim.clear();
     nama.clear();
+    no_hp.clear();
     alamat.clear();
     setState(() {
       gender = null;
@@ -51,6 +53,7 @@ class _FormData extends State<HomePage> {
     Biodata biodata = Biodata(
       nim: int.parse(nim.text),
       nama: nama.text,
+      no_hp: int.parse(no_hp.text),
       address: alamat.text,
       gender: gender,
     );
@@ -134,6 +137,16 @@ class _FormData extends State<HomePage> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(), labelText: 'Nama'),
                       controller: nama,
+                    ),
+                  ),
+                   Container(
+                    padding: EdgeInsets.all(10),
+                    child: TextField(
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(), labelText: 'No HP'),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      controller: no_hp,
                     ),
                   ),
                   Container(
@@ -278,13 +291,16 @@ class _FormData extends State<HomePage> {
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     DetailScreen(
-                                                      nim: _biodata[index].nim!,
+                                                      nim: 
+                                                            _biodata[index].nim!,
                                                       nama:
-                                                          _biodata[index].nama!,
-                                                      alamat: _biodata[index]
-                                                          .address!,
-                                                      gender: _biodata[index]
-                                                          .gender!,
+                                                             _biodata[index].nama!,
+                                                      no_hp:
+                                                          _biodata[index].no_hp!,
+                                                      alamat: 
+                                                            _biodata[index].address!,
+                                                      gender: 
+                                                      _biodata[index].gender!,
                                                     )));
                                       }),
                                       child: Text("Detail"))
