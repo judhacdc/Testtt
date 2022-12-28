@@ -5,15 +5,19 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class DetailScreen extends StatelessWidget {
+  int id;
   int nim;
-  String alamat;
+  String address;
   String nama;
   int no_hp;
   String gender;
 
   DetailScreen(
-      {required this.nim,
-      required this.alamat,
+      {
+      super.key,
+      required this.id,
+      required this.nim,
+      required this.address,
       required this.nama,
       required this.no_hp,
       required this.gender});
@@ -107,7 +111,7 @@ class DetailScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
-                    child: Text(alamat, style: TextStyle(fontSize: 16)),
+                    child: Text(address, style: TextStyle(fontSize: 16)),
                   ),
                 ],
               ),

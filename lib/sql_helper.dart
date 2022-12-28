@@ -1,25 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart' as sql;
-import 'models/biodata.dart';
+import 'package:flutter_application_1/models/biodata.dart';
 
-// data
-// table name = biodata
-// id = integer, primary key, auto increment
-// nim = integer
-// name = text
-// no_hp = integer
-// address = text
-// gender = radio button ( text )
-
-// define SQLHelper class
-// this will create the table
 class SQLHelper {
   static Future<void> createTables(sql.Database database) async {
-    await database.execute("""CREATE TABLE bioMhs(
+    await database.execute("""CREATE TABLE mhsBio(
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         nim INTEGER,
         nama text,
-        no_hp INTEGER,
+      no_hp INTEGER,
         address TEXT,
         gender TEXT, 
         createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -30,8 +19,8 @@ class SQLHelper {
   // create database
   static Future<sql.Database> db() async {
     return sql.openDatabase(
-      'bioMhs.db',
-      version: 2,
+      'mhsBio.db',
+      version: 1,
       onCreate: (sql.Database database, int version) async {
         await createTables(database);
       },
@@ -42,64 +31,46 @@ class SQLHelper {
   static Future<int> createItem(Biodata biodata) async {
     final db = await SQLHelper.db();
 
-    Map<String, dynamic> data = {
+    final data = {
       'nim': biodata.nim,
       'nama': biodata.nama,
-      'no_hp': biodata.no_hp,
+      'no_hp': biodata.no_hp, // <--- 'no_hp
       'address': biodata.address,
       'gender': biodata.gender
     };
 
-    final id = await db.insert('bioMhs', data,
+    final id = await db.insert('mhsBio', data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
     return id;
   }
 
   // read data ( select ) ( bio )
-  static Future<List<Biodata>> getItems() async {
+  static Future<List<Map<String, dynamic>>> getItems() async {
     final db = await SQLHelper.db();
-    final List<Map<String, dynamic>> maps =
-        await db.query('bioMhs', orderBy: "id");
-    return List.generate(maps.length, (i) {
-      return Biodata(
-          id: maps[i]['id'],
-          nim: maps[i]['nim'],
-          nama: maps[i]['nama'],
-          no_hp: maps[i]['no_hp'],
-          address: maps[i]['address'],
-          gender: maps[i]['gender']);
-    });
+    return db.query('mhsBio', orderBy: "id");
   }
 
   // read single data ( IMPORTANTE )
-  static Future<Biodata> getItem(int id) async {
+  static Future<List<Map<String, dynamic>>> getItem(int id) async {
     final db = await SQLHelper.db();
-    final List<Map<String, dynamic>> maps =
-        await db.query('bioMhs', where: "id = ?", whereArgs: [id], limit: 1);
-    return Biodata(
-      id: maps[0]['id'],
-      nim: maps[0]['nim'],
-      nama: maps[0]['nama'],
-      no_hp: maps[0]['no_hp'],
-      address: maps[0]['address'],
-      gender: maps[0]['gender'],
-    );
+    return db.query('mhsBio', where: "id = ?", whereArgs: [id], limit: 1);
   }
 
   // update data ( update ) ( bio )
-  static Future<int> updateItem(int id, Biodata biodata) async {
+  static Future<int> updateItem(
+      int id, int nim, int no_hp,String nama, String address, String gender) async {
     final db = await SQLHelper.db();
 
-    Map<String, dynamic> data = {
-      'nim': biodata.nim,
-      'nama': biodata.nama,
-      'no_hp': biodata.no_hp,
-      'address': biodata.address,
-      'gender': biodata.gender
+    final data = {
+      'nim': nim,
+      'nama': nama,
+      'no_hp': no_hp, // <--- 'no_hp
+      'address': address,
+      'gender': gender
     };
 
     final result =
-        await db.update('bioMhs', data, where: "id = ?", whereArgs: [id]);
+        await db.update('mhsBio', data, where: "id = ?", whereArgs: [id]);
     return result;
   }
 
@@ -107,7 +78,7 @@ class SQLHelper {
   static Future<void> deleteItem(int id) async {
     final db = await SQLHelper.db();
     try {
-      await db.delete("bioMhs", where: "id = ?", whereArgs: [id]);
+      await db.delete("mhsBio", where: "id = ?", whereArgs: [id]);
     } catch (err) {
       debugPrint("Cannot delete bio: $err");
     }
