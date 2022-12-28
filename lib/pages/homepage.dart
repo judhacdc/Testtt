@@ -47,7 +47,7 @@ class _FormData extends State<HomePage> {
     print(id);
   }
 
-  //fungsi update
+  //fungsi backend update
   Future<int> _updateItem(int id) async {
     final db = await SQLHelper.db();
 
@@ -81,6 +81,8 @@ class _FormData extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      // atur tab yang kebuka pertama
+      initialIndex: 0,
       length: 2,
       child: Scaffold(
         appBar: AppBar(
@@ -89,7 +91,9 @@ class _FormData extends State<HomePage> {
             "Mahasiswa",
           ),
           centerTitle: true,
+          // tab view
           bottom: TabBar(
+           
             tabs: [
               Tab(
                 icon: Icon(Icons.account_box),
@@ -117,6 +121,7 @@ class _FormData extends State<HomePage> {
                     ),
                   ),
                 ),
+                // field nim
                 Container(
                   padding: EdgeInsets.all(10),
                   child: TextField(
@@ -129,6 +134,7 @@ class _FormData extends State<HomePage> {
                     controller: nim,
                   ),
                 ),
+                // field nama
                 Container(
                   padding: EdgeInsets.all(10),
                   child: TextField(
@@ -139,6 +145,7 @@ class _FormData extends State<HomePage> {
                     controller: nama,
                   ),
                 ),
+                // field no hp
                 Container(
                   padding: EdgeInsets.all(10),
                   child: TextField(
@@ -151,10 +158,11 @@ class _FormData extends State<HomePage> {
                     controller: no_hp,
                   ),
                 ),
+                // field alamat
                 Container(
                   padding: EdgeInsets.all(10),
                   child: TextField(
-                    maxLines: 3,
+                    maxLines: 2,
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.orange)),
@@ -162,6 +170,7 @@ class _FormData extends State<HomePage> {
                     controller: address,
                   ),
                 ),
+                // field jenis kelamin
                 Container(
                   padding: EdgeInsets.only(left: 12, top: 10),
                   child: Row(
@@ -173,6 +182,7 @@ class _FormData extends State<HomePage> {
                     ],
                   ),
                 ),
+                // dropdown jenis kelamin
                 Container(
                   margin: EdgeInsets.only(left: 20, right: 20, top: 20),
                   padding:
@@ -227,6 +237,7 @@ class _FormData extends State<HomePage> {
                           primary: Colors.white,
                           backgroundColor: Colors.blue,
                         ),
+                        // biar ada alert pas abis ngisi form
                         onPressed: () => [
                           showDialog(
                             context: context,
@@ -258,6 +269,7 @@ class _FormData extends State<HomePage> {
                         child: Text('Submit'),
                       ),
                     ),
+                    // tombol cancel
                     SizedBox(
                       width: 6.0,
                     ),
@@ -269,6 +281,7 @@ class _FormData extends State<HomePage> {
                           primary: Colors.white,
                           backgroundColor: Colors.red,
                         ),
+                        // biar hapus semua value yang udah di isi
                         onPressed: clearText,
                         child: Text('Cancel'),
                       ),
@@ -278,6 +291,8 @@ class _FormData extends State<HomePage> {
               ],
             ),
           ),
+          // listview --------------------------------------------------------------
+         // FE list data
           Expanded(
             child: FutureBuilder(
               future: _getBiodata(),
@@ -286,7 +301,6 @@ class _FormData extends State<HomePage> {
                   itemCount: _biodata.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      // on tap nya disini
                       child: Card(
                         child: ListTile(
                           leading: CircleAvatar(
@@ -296,6 +310,7 @@ class _FormData extends State<HomePage> {
                             width: 150,
                             child: Row(
                               children: [
+                                // fitur detail
                                 IconButton(
                                   icon: Icon(Icons.details),
                                   onPressed: (() {
@@ -313,11 +328,13 @@ class _FormData extends State<HomePage> {
                                         ));
                                   }),
                                 ),
+                                // fituer edit
                                 IconButton(
                                   icon: Icon(Icons.edit),
                                   onPressed: () =>
                                       _showForm(_biodata[index]['id']),
                                 ),
+                                // fitur hapus
                                 IconButton(
                                     icon: Icon(Icons.delete),
                                     onPressed: () {
@@ -374,6 +391,7 @@ class _FormData extends State<HomePage> {
                             padding: const EdgeInsets.symmetric(
                               vertical: 10.0,
                             ),
+                            // read data
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -410,20 +428,18 @@ class _FormData extends State<HomePage> {
       });
     }
   }
-
+// update
+// get data biar aada isi
   void _showForm(int? id) {
     if (id != null) {
-      // id == null -> create new item
-      // id != null -> update an existing item
-      final currentBiodata =
-          _biodata.firstWhere((element) => element['id'] == id);
+      final currentBiodata = _biodata.firstWhere((element) => element['id'] == id);
       nim.text = currentBiodata['nim'].toString();
       nama.text = currentBiodata['nama'];
       no_hp.text = currentBiodata['no_hp'].toString();
       address.text = currentBiodata['address'];
       gender = currentBiodata['gender'];
     }
-
+// front end update => new page
     showModalBottomSheet(
       context: context,
       elevation: 5,
@@ -455,6 +471,7 @@ class _FormData extends State<HomePage> {
                 controller: nim,
               ),
             ),
+            // field nama
             Container(
               padding: EdgeInsets.all(10),
               child: TextField(
@@ -465,6 +482,7 @@ class _FormData extends State<HomePage> {
                 controller: nama,
               ),
             ),
+            // field no hp
             Container(
               padding: EdgeInsets.all(10),
               child: TextField(
@@ -477,10 +495,11 @@ class _FormData extends State<HomePage> {
                 controller: no_hp,
               ),
             ),
+            // field alamat
             Container(
               padding: EdgeInsets.all(10),
               child: TextField(
-                maxLines: 3,
+                maxLines: 2,
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.orange)),
@@ -499,6 +518,7 @@ class _FormData extends State<HomePage> {
                 ],
               ),
             ),
+            // button radio laki laki
             Row(
               children: [
                 Expanded(
@@ -521,6 +541,7 @@ class _FormData extends State<HomePage> {
                     },
                   ),
                 ),
+                // button radio perempuan
                 SizedBox(
                   width: 5.0,
                 ),
@@ -554,6 +575,7 @@ class _FormData extends State<HomePage> {
                 SizedBox(
                   height: 40,
                   width: MediaQuery.of(context).size.width / 2 - 25,
+                  // tombol update
                   child: TextButton(
                     style: TextButton.styleFrom(
                       primary: Colors.white,
@@ -565,6 +587,7 @@ class _FormData extends State<HomePage> {
                       }
 
                       Navigator.pop(context);
+                      // alert
                       showDialog(
                         context: context,
                         builder: (ctx) => AlertDialog(
@@ -599,6 +622,7 @@ class _FormData extends State<HomePage> {
                 SizedBox(
                   height: 40,
                   width: MediaQuery.of(context).size.width / 2 - 25,
+                  // tombol cancel
                   child: TextButton(
                     style: TextButton.styleFrom(
                       primary: Colors.white,

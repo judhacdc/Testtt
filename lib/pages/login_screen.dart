@@ -28,6 +28,7 @@ class StartState extends State<LoginScreen> {
     } else {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => LoginScreen()));
+          
     }
   }
 
@@ -71,6 +72,7 @@ class StartState extends State<LoginScreen> {
             ],
           )),
         ),
+        // fielnd email
         Container(
           alignment: Alignment.center,
           margin: EdgeInsets.only(left: 20, right: 20, top: 70),
@@ -100,6 +102,7 @@ class StartState extends State<LoginScreen> {
             controller: emailController,
           ),
         ),
+        // field password
         Container(
           alignment: Alignment.center,
           margin: EdgeInsets.only(left: 20, right: 20, top: 20),
