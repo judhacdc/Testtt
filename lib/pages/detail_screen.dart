@@ -61,24 +61,6 @@ class DetailScreen extends StatelessWidget {
               Row(
                 children: [
                   const Text(
-                    'Alamat',
-                    style: TextStyle(
-                        color: Colors.orange,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Text(alamat, style: TextStyle(fontSize: 16)),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  const Text(
                     'Nama',
                     style: TextStyle(
                         color: Colors.orange,
@@ -88,6 +70,24 @@ class DetailScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 36),
                     child: Text(nama, style: TextStyle(fontSize: 16)),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  const Text(
+                    'Alamat',
+                    style: TextStyle(
+                        color: Colors.orange,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Text(alamat, style: TextStyle(fontSize: 16)),
                   ),
                 ],
               ),
