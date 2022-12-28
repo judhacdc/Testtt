@@ -292,11 +292,7 @@ class _FormData extends State<HomePage> {
                               child: Icon(Icons.person),
                             ),
                             trailing: IconButton(
-                              icon: Icon(Icons.delete),
-                              // onPressed: () {
-                              //   _deleteItem(_biodata[index].id!);
-                              // },
-                              
+                              icon: Icon(Icons.delete),        
                               // biar muncul alert yes or no
                               onPressed: () {
                                       showDialog(
