@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -106,6 +108,20 @@ class DetailScreen extends StatelessWidget {
                     child: Text(gender, style: TextStyle(fontSize: 16)),
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 40,
+                width: MediaQuery.of(context).size.width / 2 - 13,
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
+                    backgroundColor: Colors.blue,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('KEMBALI'),
+                ),
               ),
             ],
           ),
