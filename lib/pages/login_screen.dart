@@ -19,8 +19,8 @@ class StartState extends State<LoginScreen> {
   final passwordController = TextEditingController();
 
   void checkLogin($email, $password) {
-    String emailCheck = "judha@mail.com";
-    String passwordCheck = "123456";
+    String emailCheck = "123";
+    String passwordCheck = "123";
 
     if ($email == emailCheck && $password == passwordCheck) {
       Navigator.push(
@@ -28,6 +28,14 @@ class StartState extends State<LoginScreen> {
     } else {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => LoginScreen()));
+          // return showDialog(
+          //   context: context,
+          //   builder: (context) {
+          //     return AlertDialog(
+          //       content: Text("Email atau Password Salah"),
+          //     );
+          //   }
+          // );
     }
   }
 
@@ -117,6 +125,7 @@ class StartState extends State<LoginScreen> {
           ),
           child: TextField(
             cursorColor: Color(0xffF5591F),
+            // biar jadi bintang bintang
             obscureText: true,
             decoration: InputDecoration(
               focusColor: Color(0xffF5591F),
