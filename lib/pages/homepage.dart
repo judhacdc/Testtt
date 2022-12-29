@@ -5,6 +5,9 @@ import 'package:flutter_application_1/models/biodata.dart';
 import 'package:flutter_application_1/sql_helper.dart';
 import 'package:flutter_application_1/models/biodata.dart';
 import 'package:flutter_application_1/pages/detail_screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import 'login_screen.dart';
 
 // Make Form with radio button
 class HomePage extends StatefulWidget {
@@ -86,6 +89,27 @@ class _FormData extends State<HomePage> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          // kasih tombol logout
+          actions: [
+            IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                );
+                // kasih toast
+                Fluttertoast.showToast(
+                    msg: "BERHASIL LOGOUT",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1, // duration of the toast
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0);
+              },
+            ),
+          ],
           backgroundColor: Color(0xffF5591F),
           title: const Text(
             "Mahasiswa",
@@ -93,7 +117,6 @@ class _FormData extends State<HomePage> {
           centerTitle: true,
           // tab view
           bottom: TabBar(
-           
             tabs: [
               Tab(
                 icon: Icon(Icons.account_box),
@@ -253,7 +276,7 @@ class _FormData extends State<HomePage> {
                                     color: Colors.blue,
                                     padding: const EdgeInsets.all(14),
                                     child: const Text(
-                                      "okay",
+                                      "Okay",
                                       style: TextStyle(
                                         color: Colors.white,
                                       ),
@@ -292,7 +315,7 @@ class _FormData extends State<HomePage> {
             ),
           ),
           // listview --------------------------------------------------------------
-         // FE list data
+          // FE list data
           Expanded(
             child: FutureBuilder(
               future: _getBiodata(),
@@ -428,11 +451,13 @@ class _FormData extends State<HomePage> {
       });
     }
   }
+
 // update
 // get data biar aada isi
   void _showForm(int? id) {
     if (id != null) {
-      final currentBiodata = _biodata.firstWhere((element) => element['id'] == id);
+      final currentBiodata =
+          _biodata.firstWhere((element) => element['id'] == id);
       nim.text = currentBiodata['nim'].toString();
       nama.text = currentBiodata['nama'];
       no_hp.text = currentBiodata['no_hp'].toString();
