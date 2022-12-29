@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/homepage.dart';
 import 'package:flutter_application_1/pages/signup_screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -24,11 +25,28 @@ class StartState extends State<LoginScreen> {
 
     if ($email == emailCheck && $password == passwordCheck) {
       Navigator.push(
+        
           context, MaterialPageRoute(builder: (context) => HomePage()));
+          Fluttertoast.showToast(
+          msg: "LOGIN BERHASIL !",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1, // duration of the toast
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+          
     } else {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => LoginScreen()));
-          
+      Fluttertoast.showToast(
+          msg: "LOGIN GAGAL !",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1, // duration of the toast
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
     }
   }
 
